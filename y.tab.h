@@ -58,13 +58,13 @@ extern int yydebug;
 typedef union YYSTYPE YYSTYPE;
 union YYSTYPE
 {
-#line 33 "ex03.y" /* yacc.c:1909  */
+#line 25 "ex03.y" /* yacc.c:1909  */
 
   int valeur;
   char addr_list;
-#line 38 "ex03.y" /* yacc.c:1909  */
+#line 30 "ex03.y" /* yacc.c:1909  */
 
-  struct NODE* ptr_liste;
+  unsigned long int ptr_liste;
 
 #line 70 "y.tab.h" /* yacc.c:1909  */
 };
