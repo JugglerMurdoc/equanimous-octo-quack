@@ -47,28 +47,30 @@ extern int yydebug;
   {
     ENTIER = 258,
     OP1 = 259,
-    IDEN = 260
+    OP2 = 260,
+    IDEN = 261
   };
 #endif
 /* Tokens.  */
 #define ENTIER 258
 #define OP1 259
-#define IDEN 260
+#define OP2 260
+#define IDEN 261
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE YYSTYPE;
 union YYSTYPE
 {
-#line 25 "ex03.y" /* yacc.c:1909  */
+#line 26 "ex03.y" /* yacc.c:1909  */
 
   int valeur;
   char addr_list;
-#line 30 "ex03.y" /* yacc.c:1909  */
+#line 31 "ex03.y" /* yacc.c:1909  */
 
   unsigned long int ptr_liste;
 
-#line 72 "y.tab.h" /* yacc.c:1909  */
+#line 74 "y.tab.h" /* yacc.c:1909  */
 };
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1

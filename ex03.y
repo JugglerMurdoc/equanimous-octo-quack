@@ -19,6 +19,7 @@ char insert_list(char hash_char, unsigned long int list);
 void print_list(unsigned long int list);
 void print_hash_table();
 int hash (char caracter);
+unsigned long int apply_operation(int op_code,unsigned long int op1,unsigned long int op2);
 
 %}
 
@@ -34,6 +35,7 @@ int hash (char caracter);
 
 %token <valeur> ENTIER
 %token <valeur> OP1
+%token <valeur> OP2
 %token <addr_list> IDEN
 %type  <ptr_liste> liste
 %type  <ptr_liste> instruction
@@ -42,6 +44,7 @@ int hash (char caracter);
 %type  <ptr_liste> ensemble 
 %type  <ptr_liste> liste_elements 
 %type  <valeur>	operateur1
+%type  <valeur>	operateur2
 
 %%
 
@@ -68,13 +71,19 @@ instruction :
 expression :   
 	operande
 		{$$=$1;}
-	|operateur1 operande {
-		$$ = ((unsigned long int)32)-$2;
-		};
+	|operateur1 operande 
+		{$$ = ((unsigned long int)2E32)-$2;}
+	|operande operateur2 operande
+		{$$ = apply_operation($2,$1,$3);};
 
 operateur1 :
 	OP1 
 		{$$ = $1;};
+operateur2 :
+	OP2 
+		{$$ = $1;};
+
+		
 	
 
 operande :  
@@ -195,6 +204,21 @@ void print_hash_table(){
 	printf("Not assigned.\n");
 	}
 	}
+}
+
+unsigned long int apply_operation(int op_code,unsigned long int op1,unsigned long int op2){
+	unsigned long int result = 0;
+	switch(op_code){
+		case 1 : result = op1 ^ op2;
+			 break;
+		case 2 : result = op1 & op2;
+			 break;
+		case 3 : result = op1 | op2;
+			 break;
+	}
+	
+	return result;
+	
 }
 
 int main(){
