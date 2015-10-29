@@ -5,20 +5,27 @@
 %}
 
 %%
+COMP		{
+				return OP1;
+			}
+
 
 [a-zA-Z]		{
 				yylval.valeur=yytext[0]; return IDEN;
 			}//La valeur de l'identifiant est son index ASCII
 
 [0-9]+			{
-				yylval.valeur=atoi(yytext); return ENTIER;
+				yylval.valeur=atoi(yytext);
+				return ENTIER;
 			}
 			
 
-[{},:=	]			{
+[{},:=]			{
 
 				return yytext[0];
 			}
+
+[\t ]+			{	}
 
 [\n]			{
 				return yytext[0];

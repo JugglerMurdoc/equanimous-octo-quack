@@ -46,12 +46,14 @@ extern int yydebug;
   enum yytokentype
   {
     ENTIER = 258,
-    IDEN = 259
+    OP1 = 259,
+    IDEN = 260
   };
 #endif
 /* Tokens.  */
 #define ENTIER 258
-#define IDEN 259
+#define OP1 259
+#define IDEN 260
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -66,7 +68,7 @@ union YYSTYPE
 
   unsigned long int ptr_liste;
 
-#line 70 "y.tab.h" /* yacc.c:1909  */
+#line 72 "y.tab.h" /* yacc.c:1909  */
 };
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1

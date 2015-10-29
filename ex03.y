@@ -33,6 +33,7 @@ int hash (char caracter);
 
 
 %token <valeur> ENTIER
+%token <valeur> OP1
 %token <addr_list> IDEN
 %type  <ptr_liste> liste
 %type  <ptr_liste> instruction
@@ -40,7 +41,7 @@ int hash (char caracter);
 %type  <ptr_liste> expression 
 %type  <ptr_liste> ensemble 
 %type  <ptr_liste> liste_elements 
-%right  ','
+%type  <valeur>	operateur1
 
 %%
 
@@ -66,7 +67,15 @@ instruction :
    
 expression :   
 	operande
-	{$$=$1;};
+		{$$=$1;}
+	|operateur1 operande {
+		$$ = ((unsigned long int)32)-$2;
+		};
+
+operateur1 :
+	OP1 
+		{$$ = $1;};
+	
 
 operande :  
  IDEN {$$=get_list($1);}
@@ -81,9 +90,10 @@ ensemble :
 
 liste_elements :   
   ENTIER
- 	{$$=(unsigned long int)$1;}
+ 	{unsigned long int result = (unsigned long int)$1;
+ 	$$=add_element(result,0);}
  | ENTIER ',' liste_elements
- 	{$$=add_element($1,$3);};
+ 	{$$=add_element(((unsigned long int)$1),$3);};
 
 
 %%
@@ -190,8 +200,8 @@ void print_hash_table(){
 int main(){
 init_hash_table();
 printf("Entrez une chaine\n");
- while(1==1){
- yyparse();
+while(1==1){
+yyparse();
 }
  return 0; 
 }
